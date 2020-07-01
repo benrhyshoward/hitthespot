@@ -40,7 +40,9 @@ func generatePortmanteauQuestions(user model.User, noMoreQuestionsChannel chan (
 					if used[artist2.Name] || artist1.Name == artist2.Name {
 						continue
 					}
-					if strings.HasPrefix(strings.ToLower(artist2.Name), strings.ToLower(possibleJoin)) {
+					if strings.HasPrefix(strings.ToLower(artist2.Name), strings.ToLower(possibleJoin)) &&
+						len(artist1.Images) > 0 &&
+						len(artist2.Images) > 0 {
 						portmanteau := artist1.Name + substr(artist2.Name, len([]rune(possibleJoin)), len([]rune(artist2.Name)))
 						images := []string{artist1.Images[0].URL, artist2.Images[0].URL}
 						question := model.Question{
