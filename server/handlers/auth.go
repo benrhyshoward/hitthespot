@@ -45,12 +45,14 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	expire := time.Now().Add(24 * time.Hour)
 	cookie := http.Cookie{
-		Name:     "htssess",
-		Value:    sessionID,
-		Path:     "/",
-		Expires:  expire,
-		Secure:   os.Getenv("HTTPS") == "true",
-		SameSite: 4, //SameSite=None
+		Name:    "htssess",
+		Value:   sessionID,
+		Path:    "/",
+		Expires: expire,
+	}
+	if os.Getenv("HTTPS") == "true" {
+		cookie.Secure = true
+		cookie.SameSite = 4 //SameSite=None
 	}
 
 	http.SetCookie(w, &cookie)
