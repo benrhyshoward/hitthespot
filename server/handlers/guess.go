@@ -134,8 +134,8 @@ func PostGuess(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//Case insensitive comparison
-	correct := strings.ToLower(question.Answer.Value) == strings.ToLower(*req.Guess)
+	//Trimmed case insensitive comparison
+	correct := strings.TrimSpace(strings.ToLower(question.Answer.Value)) == strings.TrimSpace(strings.ToLower(*req.Guess))
 
 	var score int
 	if correct {
