@@ -138,12 +138,14 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 	//Setting an expired cookie to remove from browsers
 	expire := time.Now().Add(-24 * time.Hour)
 	cookie := http.Cookie{
-		Name:     "htssess",
-		Value:    sessionID.Value,
-		Secure:   os.Getenv("HTTPS") == "true",
-		Path:     "/",
-		Expires:  expire,
-		SameSite: 4, //SameSite=None
+		Name:    "htssess",
+		Value:   sessionID.Value,
+		Path:    "/",
+		Expires: expire,
+	}
+	if os.Getenv("HTTPS") == "true" {
+		cookie.Secure = true
+		cookie.SameSite = 4 //SameSite=None
 	}
 
 	http.SetCookie(w, &cookie)
