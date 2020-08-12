@@ -32,7 +32,7 @@ Steps
 - Generate a certificate for the host you are deploying to
     - Place the cert into `/server/certs/certificate.pem`
     - Place the key into `/server/certs/key.pem` 
-- Go to `/client` and run `yarn build`
+- Go to `/client` and run `yarn` then `yarn build`
 - Copy the `build` folder into `/server/build`
 - Inside `/server` run `docker build -t hitthespot .`
 - Run `docker run -p 443:8080 --{{environment-variables}} hitthespot`
