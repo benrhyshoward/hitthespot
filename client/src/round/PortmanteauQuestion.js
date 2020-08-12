@@ -5,13 +5,20 @@ import {
 } from './roundSlice' 
 import { CorrectNotification } from './CorrectNotification'
 import { useDispatch } from 'react-redux';
-import { Typography, Grid, Button, makeStyles, TextField, FormGroup } from '@material-ui/core';
+import { Typography, Grid, Button, makeStyles, TextField, FormGroup, Dialog, DialogContent, DialogContentText, IconButton } from '@material-ui/core';
+import HelpIcon from '@material-ui/icons/Help';
 
 const useStyles = makeStyles({
     description: {
         textAlign: 'center',
         whiteSpace: 'pre-line'
       },
+    artistName: {
+        fontWeight: 'bold',
+      },
+    iconButton: {
+        color: '#3f51b5',
+    },
     image: {
         height: '100%',
         width: '100%',
@@ -37,6 +44,7 @@ export function PortmanteauQuestion(props) {
     const classes = useStyles();
 
     const [guess, setGuess] = useState("");
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -48,7 +56,20 @@ export function PortmanteauQuestion(props) {
     return (
         <Grid container direction="row" item xs={12} spacing={2}>
             <Grid item xs={12}>
-                <Typography variant="h6" className={classes.description}>{question.Description}</Typography>
+                <Typography variant="h6" className={classes.description}>
+                    {question.Description}
+                    <IconButton className={classes.iconButton} onClick={() => setDialogOpen(true)}>
+                        <HelpIcon/>
+                    </IconButton>
+                </Typography>
+                <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+                    <DialogContent>
+                    <DialogContentText className={classes.description}>
+                            Identify the two artists from the pictures, then join the names together using the shared letters. <br/>
+                            For example, <span className={classes.artistName}>Tame Impala</span> and <span className={classes.artistName}>Lana Del Rey</span> becomes <span className={classes.artistName}>Tame Impalana Del Rey</span>.
+                        </DialogContentText>
+                    </DialogContent>
+                </Dialog>
             </Grid>
             <Grid item className={classes.image1} xs={6}> 
                 <img alt=""className={classes.image} src={question.Images[0]}/>
