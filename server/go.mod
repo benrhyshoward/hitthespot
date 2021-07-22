@@ -7,6 +7,5 @@ require (
 	github.com/gorilla/mux v1.7.4
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/zmb3/spotify v0.0.0-20200421005422-9b419f8fe914
-	go.mongodb.org/mongo-driver v1.3.2
-	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd // indirect
+	go.mongodb.org/mongo-driver v1.5.1
 )
