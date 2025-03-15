@@ -2,8 +2,6 @@
 
 Personalised music quiz based on your favourite music from Spotify.
 
-See it deployed at [hitthespot.app](https://hitthespot.app)
-
 ## Tech
  - Go backend
  - React + Redux frontend
